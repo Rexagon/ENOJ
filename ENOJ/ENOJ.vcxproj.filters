@@ -83,6 +83,18 @@
     <ClInclude Include="Constants.h">
       <Filter>Stuff</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Logic\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Logic\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Logic\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentManager.h">
+      <Filter>Logic\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -99,6 +111,9 @@
     </Filter>
     <Filter Include="Stuff\stb_image">
       <UniqueIdentifier>{862f1be5-48bc-422d-aa35-3d93c9c6d2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ECS">
+      <UniqueIdentifier>{7d46fce8-08b7-48c4-bd42-a37b9f585b0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

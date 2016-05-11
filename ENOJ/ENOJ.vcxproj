@@ -94,9 +94,12 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ENOJ.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Math.h" />
@@ -104,6 +107,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stb_image\stb_image.h" />
+    <ClInclude Include="System.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Timer.h" />
