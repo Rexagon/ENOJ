@@ -1,7 +1,6 @@
 ENOJ version: 2.0.1
 Log file created
 
-[INFO]: Scene deleted: scene_0
 
 
 [CLOSED]
