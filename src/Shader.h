@@ -15,11 +15,11 @@ public:
 	void Bind();
 	void SetUniform(const std::string& name, int value);
 	void SetUniform(const std::string& name, float value);
-	void SetUniform(const std::string& name, const vec2& value);
-	void SetUniform(const std::string& name, const vec3& value);
-	void SetUniform(const std::string& name, const mat4& value);
-	void SetUniformsArray(const std::string& name, vec3* value, int size);
-	void SetUniformsArray(const std::string& name, mat4* value, int size);
+	void SetUniform(const std::string& name, const glm::vec2& value);
+	void SetUniform(const std::string& name, const glm::vec3& value);
+	void SetUniform(const std::string& name, const glm::mat4& value);
+	void SetUniformsArray(const std::string& name, glm::vec3* value, int size);
+	void SetUniformsArray(const std::string& name, glm::mat4* value, int size);
 
 	int GetGLid() const;
 private:

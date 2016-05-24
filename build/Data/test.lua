@@ -3,5 +3,13 @@ objects.first = {
 	GraphicsComponent = {
 		color = {1.0, 0.1, 0.1, 0.0},
 		type = 'nothing'
+	},
+	asd = {
+		qwer = 123,
+		qwe = 12,
+		qw = 1
+	},
+	{
+		asd = qwe
 	}
 }

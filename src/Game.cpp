@@ -11,6 +11,8 @@
 
 Game::Game()
 {
+	SDL_Init(SDL_INIT_EVERYTHING);
+
 	Log::Create(Constants::LOG_FILE_NAME);
 	srand(static_cast<size_t>(time(nullptr)));
 

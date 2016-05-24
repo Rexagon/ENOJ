@@ -1,41 +1,34 @@
 #include "Script.h"
-
-#include <fstream>
-#include <streambuf>
-
 #include "Constants.h"
 
-std::unique_ptr<Lua> Script::lua = nullptr;
+sel::State Script::m_state{ true };
 
-std::string Script::Load(const std::string& filename)
+void Script::Load(const std::string & filename)
 {
-	std::ifstream file(Constants::DATA_FOLDER + filename);
-	std::string code((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-	return lua->RunScript(code);
+	m_state.Load(filename);
 }
 
-std::string Script::Eval(const std::string& code)
+void Script::Eval(const std::string & code)
 {
-	return lua->RunScript(code);
+	m_state(code.c_str());
 }
 
-LuaTable Script::GetGlobal()
+void Script::GC()
 {
-	return lua->GetGlobalEnvironment();
+	m_state.ForceGC();
 }
 
-LuaTable Script::CreateTable()
+sel::Selector Script::Get(const std::string & name)
 {
-	return lua->CreateTable();
+	return m_state[name.c_str()];
 }
 
 void Script::Init()
 {
-	lua = std::make_unique<Lua>();
-	lua->LoadStandardLibraries();
+	m_state("objects = {} scenes = {}");
 }
 
 void Script::Close()
 {
-	lua->CollectGarbage();
+	m_state.ForceGC();
 }

@@ -50,27 +50,27 @@ void Shader::SetUniform(const std::string & name, float value)
 	glUniform1f(m_uniformsf[name], value);
 }
 
-void Shader::SetUniform(const std::string & name, const vec2 & value)
+void Shader::SetUniform(const std::string & name, const glm::vec2 & value)
 {
 	glUniform2f(m_uniformsVec2[name], value.x, value.y);
 }
 
-void Shader::SetUniform(const std::string & name, const vec3 & value)
+void Shader::SetUniform(const std::string & name, const glm::vec3 & value)
 {
 	glUniform3f(m_uniformsVec3[name], value.x, value.y, value.z);
 }
 
-void Shader::SetUniform(const std::string & name, const mat4 & value)
+void Shader::SetUniform(const std::string & name, const glm::mat4 & value)
 {
 	glUniformMatrix4fv(m_uniformsMat4[name], 1, GL_FALSE, &value[0][0]);
 }
 
-void Shader::SetUniformsArray(const std::string & name, vec3 * value, int size)
+void Shader::SetUniformsArray(const std::string & name, glm::vec3 * value, int size)
 {
 	glUniform3fv(m_uniformsVec3Array[name], size, &value[0][0]);
 }
 
-void Shader::SetUniformsArray(const std::string & name, mat4 * value, int size)
+void Shader::SetUniformsArray(const std::string & name, glm::mat4 * value, int size)
 {
 	glUniformMatrix4fv(m_uniformsMat4Array[name], size, GL_FALSE, &value[0][0][0]);
 }

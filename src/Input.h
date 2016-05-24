@@ -285,10 +285,10 @@ public:
 	static bool GetMouseDown(int button);
 	static bool GetMouseUp(int button);
 
-	static vec2 GetMousePosition();
+	static glm::vec2 GetMousePosition();
 
 	static void SetCursor(bool value);
-	static void SetMousePosition(const vec2& pos);
+	static void SetMousePosition(const glm::vec2& pos);
 protected:
 private:
 };

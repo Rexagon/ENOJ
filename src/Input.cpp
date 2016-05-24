@@ -97,9 +97,9 @@ bool Input::GetMouseUp(int button)
 	return upMouse[button];
 }
 
-vec2 Input::GetMousePosition()
+glm::vec2 Input::GetMousePosition()
 {
-	return vec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
+	return glm::vec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
 }
 
 void Input::SetCursor(bool visible)
@@ -110,7 +110,7 @@ void Input::SetCursor(bool visible)
 		SDL_ShowCursor(0);
 }
 
-void Input::SetMousePosition(const vec2& pos)
+void Input::SetMousePosition(const glm::vec2& pos)
 {
 	Window::SetMousePosition(static_cast<int>(pos.x), static_cast<int>(pos.y));
 }

@@ -3,26 +3,25 @@
 #include <cassert>
 #include <GL\glew.h>
 
-ivec2 Window::m_size;
+glm::ivec2 Window::m_size;
 std::string Window::m_title;
 float Window::m_aspect = 0;
-vec3 Window::m_clearColor = vec3(0.2f, 0.2f, 0.2f);
+glm::vec3 Window::m_clearColor = glm::vec3(0.2f, 0.2f, 0.2f);
 bool Window::m_isOpen = false;
 
 SDL_Window* Window::m_window = nullptr;
 SDL_GLContext Window::m_context = 0;
 
-void Window::Create(const std::string & title, bool fullscreen)
+void Window::Create(const std::string & title)
 {
 	SDL_DisplayMode display;
 	SDL_GetCurrentDisplayMode(0, &display);
-	Create(display.w, display.h, title, fullscreen);
+	std::cout << display.w << " " << display.h << "\n";
+	Create(display.w, display.h, title, true);
 }
 
 void Window::Create(size_t width, size_t height, const std::string & title, bool fullscreen)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -31,7 +30,7 @@ void Window::Create(size_t width, size_t height, const std::string & title, bool
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	m_size = ivec2(width, height);
+	m_size = glm::ivec2(width, height);
 
 	if (!fullscreen)
 		m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
@@ -42,7 +41,7 @@ void Window::Create(size_t width, size_t height, const std::string & title, bool
 
 	GLenum res = glewInit();
 	if (res != GLEW_OK) {
-		throw "Glew failed to initialize!";
+		throw std::exception("Glew failed to initialize!");
 	}
 
 	glFrontFace(GL_CW);

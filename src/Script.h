@@ -1,28 +1,21 @@
 #pragma once
 
 #include <string>
-#include <luacppinterface.h>
+#include <selene.h>
 
 class Script
 {
 public:
-	static std::string Load(const std::string& filename);
-	static std::string Eval(const std::string& code);
+	static void Load(const std::string& filename);
+	static void Eval(const std::string& code);
+	static void GC();
 
-	static LuaTable GetGlobal();
-
-	static LuaTable CreateTable();
-
-	template<class T>
-	static LuaFunction<T> CreateFunction(const std::string& name)
-	{
-		return lua->CreateFunction<T>();
-	}
+	static sel::Selector Get(const std::string& name);
 private:
 	friend class Game;
 
 	static void Init();
 	static void Close();
 
-	static std::unique_ptr<Lua> lua;
+	static sel::State m_state;
 };

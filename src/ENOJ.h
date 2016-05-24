@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "Game.h"
 #include "Window.h"
+#include "Input.h"
 
 #include "ComponentManager.h"
 #include "Entity.h"

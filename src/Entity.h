@@ -19,13 +19,16 @@ namespace ecs
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from the Component class");
 			m_components[std::type_index(typeid(T))] = component;
+			component->m_owner = this;
 		}
 
 		template<class T>
 		void AssignNew()
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from the Component class");
-			m_components[std::type_index(typeid(T))] = ComponentManager::Create<T>();
+			auto component = ComponentManager::Create<T>();
+			m_components[std::type_index(typeid(T))] = component;
+			component->m_owner = this;
 		}
 
 		template<class T>
@@ -41,6 +44,8 @@ namespace ecs
 		void SetType(const std::string& type) { m_type = type; }
 		std::string GetType() const { return m_type; }
 	private:
+		friend class Component;
+
 		std::string m_type;
 		std::unordered_map<std::type_index, Component*> m_components;
 	};

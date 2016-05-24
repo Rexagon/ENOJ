@@ -2,12 +2,15 @@
 
 namespace ecs
 {
+	class Entity;
+
 	class Component
 	{
 	public:
 		virtual ~Component() {}
-	private:
-		template<class T>
-		friend class System;
+	private:		
+		friend class Entity;
+
+		Entity* m_owner;
 	};
 }
