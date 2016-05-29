@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Window.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -35,9 +34,6 @@
     <ClCompile Include="ShaderManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Constants.cpp">
-      <Filter>Stuff</Filter>
-    </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Logic\ECS</Filter>
     </ClCompile>
@@ -46,6 +42,36 @@
     </ClCompile>
     <ClCompile Include="Script.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>_main</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Logic\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystem.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingComponent.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadableScene.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelBone.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelManager.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,7 +90,6 @@
     <ClInclude Include="Log.h">
       <Filter>Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="ENOJ.h" />
     <ClInclude Include="Texture.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -86,9 +111,6 @@
     <ClInclude Include="Timer.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Stuff</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Logic\ECS</Filter>
     </ClInclude>
@@ -105,6 +127,39 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Math.h">
+      <Filter>Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="ENOJ.h">
+      <Filter>_main</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Logic\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingComponent.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystem.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadableScene.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelBone.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformable.h">
       <Filter>Stuff</Filter>
     </ClInclude>
   </ItemGroup>
@@ -126,6 +181,9 @@
     </Filter>
     <Filter Include="Logic\ECS">
       <UniqueIdentifier>{7d46fce8-08b7-48c4-bd42-a37b9f585b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_main">
+      <UniqueIdentifier>{9b5f7107-f331-4c23-8f10-f580bf71defc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "ComponentManager.h"
+#include "Script.h"
 
 namespace ecs
 {
@@ -12,6 +13,8 @@ namespace ecs
 	{
 	public:
 		static_assert(std::is_base_of<Component, T>::value, "T must be derived from the Component class");
+
+		virtual void Update() {}
 
 		static T* Create()
 		{

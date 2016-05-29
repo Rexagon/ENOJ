@@ -2,6 +2,9 @@
 
 #include <cassert>
 #include <GL\glew.h>
+#include <json.hpp>
+
+#include "Log.h"
 
 glm::ivec2 Window::m_size;
 std::string Window::m_title;
@@ -11,6 +14,33 @@ bool Window::m_isOpen = false;
 
 SDL_Window* Window::m_window = nullptr;
 SDL_GLContext Window::m_context = 0;
+
+void Window::CreateFromFile(const std::string& properties)
+{
+	try {
+		json j = json::parse_file(properties);
+		auto size = j["size"];
+		auto vsync = j["vsync"];
+		auto fullscreen = j["fullscreen"];
+
+		if (size.is_null() || !size.is_array() || size.size() < 2) {
+			if (!fullscreen.is_null() && fullscreen)
+				Window::Create("ENOJ");
+			else
+				throw std::exception("window size wasn't specified");
+		}
+		else {
+			Window::Create(size[0], size[1], "ENOJ", (!fullscreen.is_null() && fullscreen));
+		}
+
+		if (vsync)
+			Window::EnableVSync();
+	}
+	catch (std::exception e) {
+		Log::out << Log::Type::ERROR << e.what() << "\n";
+		Window::Create(800, 600, "ENOJ");
+	}
+}
 
 void Window::Create(const std::string & title)
 {

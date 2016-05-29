@@ -1,5 +1,6 @@
 #include "Log.h"
-#include "Constants.h"
+
+#define ENOJ_VERSION "1.0.3"
 
 std::ofstream Log::m_file;
 size_t Log::m_numErrors = 0;
@@ -11,7 +12,7 @@ void Log::Create(const std::string & path)
 	m_file.open(path);
 
 	if (m_file.is_open()) {
-		m_file << "ENOJ version: " << Constants::ENOJ_VERSION << "\n";
+		m_file << "ENOJ version: " << ENOJ_VERSION << "\n";
 		m_file << "Log file created" << "\n\n";
 	}
 }

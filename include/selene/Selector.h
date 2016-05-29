@@ -288,7 +288,7 @@ public:
         return detail::_get_n<Ret...>(_state);
     }
 
-	void ForAllStringKeys(std::function<void (const std::string&)> keysFunc) const {
+	void ForAllKeys(std::function<void (const std::string&)> keysFunc) const {
 		ResetStackOnScopeExit save(_state);
 		detail::_push_table_to_stack(_state, _name);
 		if (lua_isnil(_state, -1)) throw std::exception("Table doesn't exist");
@@ -303,7 +303,7 @@ public:
 				key = lua_tostring(_state, -2);
 			}
 			else if (type == LUA_TNUMBER) {
-				key = std::to_string(lua_tonumber(_state, -2));
+				key = std::to_string(static_cast<int>(lua_tonumber(_state, -2)));
 			}
 
 			keysFunc(key);

@@ -1,5 +1,4 @@
 #include "Script.h"
-#include "Constants.h"
 
 sel::State Script::m_state{ true };
 
@@ -26,6 +25,9 @@ sel::Selector Script::Get(const std::string & name)
 void Script::Init()
 {
 	m_state("objects = {} scenes = {}");
+	m_state["require"] = [](const std::string& filename) {
+		Load("Data/" + filename);
+	};
 }
 
 void Script::Close()

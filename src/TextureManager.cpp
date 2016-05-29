@@ -43,6 +43,8 @@ texture_ptr TextureManager::Create(const std::string & path, GLfloat filter)
 		texture->m_textureTarget = textureTarget;
 		texture->m_path = path;
 		m_resourceMap.insert(std::make_pair(path, texture));
+
+		Log::out << Log::Type::INFO << "Texture loaded: \"" << path << "\"\n";
 	}
 
 	return texture;

@@ -1,6 +1,5 @@
 #include "ShaderManager.h"
 #include "Log.h"
-#include "Constants.h"
 
 std::map<std::string, shader_ptr> ShaderManager::m_resourceMap;
 
@@ -60,7 +59,7 @@ static std::string LoadShader(const std::string& path)
 
 shader_ptr ShaderManager::Create(const std::string & shaderName, int type)
 {
-	std::string path = Constants::DATA_FOLDER + Constants::SHADERS_FOLDER + shaderName;
+	std::string path = shaderName;
 	shader_ptr shader = Get(shaderName);
 
 	if (shader) {
@@ -111,6 +110,8 @@ shader_ptr ShaderManager::Create(const std::string & shaderName, int type)
 
 		m_resourceMap.insert(std::make_pair(shaderName, shader));
 	}
+
+	Log::out << "Shader loaded: \"" << shaderName << "\"\n";
 
 	return shader;
 }

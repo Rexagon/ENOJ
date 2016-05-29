@@ -1,8 +1,0 @@
-ENOJ version: 2.0.1
-Log file created
-
-
-
-[CLOSED]
-0 warnings
-0 errors

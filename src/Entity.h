@@ -6,13 +6,18 @@
 #include <typeindex>
 
 #include "ComponentManager.h"
+#include "Transformable.h"
+#include "Log.h"
 
 namespace ecs
 {
-	class Entity
+	class Entity : public Transformable
 	{
 	public:
-		virtual ~Entity() {}
+		virtual ~Entity()
+		{
+			Log::out << Log::Type::INFO << "Entity deleted: " << m_name << "\n";
+		}
 
 		template<class T>
 		void Assign(Component* component)
@@ -26,7 +31,7 @@ namespace ecs
 		void AssignNew()
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from the Component class");
-			auto component = ComponentManager::Create<T>();
+			T* component = ComponentManager::Create<T>();
 			m_components[std::type_index(typeid(T))] = component;
 			component->m_owner = this;
 		}
@@ -41,12 +46,16 @@ namespace ecs
 			return nullptr;
 		}
 
-		void SetType(const std::string& type) { m_type = type; }
-		std::string GetType() const { return m_type; }
-	private:
-		friend class Component;
+		template<class T>
+		bool Has()
+		{
+			return m_components.find(std::type_index(typeid(T))) != m_components.end();
+		}
 
-		std::string m_type;
+		void SetName(const std::string& type) { m_name = type; }
+		std::string GetName() const { return m_name; }
+	private:
+		std::string m_name;
 		std::unordered_map<std::type_index, Component*> m_components;
 	};
 }

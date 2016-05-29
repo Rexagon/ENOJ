@@ -6,7 +6,7 @@
 Texture::~Texture()
 {
 	if (m_textureID) glDeleteTextures(1, &m_textureID);
-	Log::out << Log::Type::INFO << "Texture deleted: Data/" + m_path + "\n";
+	Log::out << Log::Type::INFO << "Texture deleted: \"" + m_path + "\"\n";
 }
 
 void Texture::Bind(size_t id)
