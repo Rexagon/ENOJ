@@ -28,15 +28,6 @@ namespace ecs
 		}
 
 		template<class T>
-		void AssignNew()
-		{
-			static_assert(std::is_base_of<Component, T>::value, "T must be derived from the Component class");
-			T* component = ComponentManager::Create<T>();
-			m_components[std::type_index(typeid(T))] = component;
-			component->m_owner = this;
-		}
-
-		template<class T>
 		T* Get()
 		{
 			auto it = m_components.find(std::type_index(typeid(T)));

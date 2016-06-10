@@ -2,36 +2,51 @@
 #include "Log.h"
 #include "ModelManager.h"
 #include "Entity.h"
+#include "CameraSystem.h"
+#include "Config.h"
 
-std::vector<RenderingComponent*> ecs::System<RenderingComponent>::m_components;
-shader_ptr RenderingSystem::m_modelShader = nullptr;
 
-void RenderingSystem::Init()
+void RenderingSystem::Init(CameraSystem* cameraSystem)
 {
+	m_cameraSystem = cameraSystem;
 	m_modelShader = ShaderManager::Create("Data/shaders/model", SHADER_VERTEX | SHADER_FRAGMENT);
+	m_modelShader->Bind();
+	m_modelShader->SetUniform("diffuse_tex", 0);
+	m_modelShader->SetUniform("normal_tex", 1);
+	m_modelShader->SetUniform("specular_tex", 2);
 }
 
 void RenderingSystem::Update()
 {
-	auto shader = ShaderManager::Get("Data/shaders/model");
+	m_modelShader->Bind();
+	m_cameraSystem->Update(m_modelShader);
 
 	for (auto c : m_components) {
-		c->m_model.Draw(shader, c->GetOwner()->GetTransformation());
+		c->m_model.Draw(m_modelShader, c->GetOwner()->GetTransformation());
 	}
 }
 
-RenderingComponent * RenderingSystem::Create(sel::Selector data)
+RenderingComponent* RenderingSystem::Create(json data)
 {
 	auto component = ecs::System<RenderingComponent>::Create();
-	
-	try {
-		component->m_model = ModelManager::Get(data["model"]);
-	}
-	catch (const std::exception& e) {
-		Log::out << Log::Type::ERROR << e.what() << "\n";
+
+	auto modelData = data["model"];
+	if (modelData.is_string()) {
+		try {
+			std::string modelPath = data["model"];
+			component->m_model = ModelManager::Get(Config::dataFolder + modelPath);
+		}
+		catch(const std::exception& e) {
+			Log::out << Log::Type::ERROR << e.what() << "\n";
+		}
 	}
 
 	Log::out << Log::Type::INFO << "Component created: RenderingComponent\n";
 
 	return component;
+}
+
+void RenderingSystem::Clear()
+{
+	m_modelShader.reset();
 }

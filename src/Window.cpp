@@ -2,7 +2,6 @@
 
 #include <cassert>
 #include <GL\glew.h>
-#include <json.hpp>
 
 #include "Log.h"
 
@@ -14,33 +13,6 @@ bool Window::m_isOpen = false;
 
 SDL_Window* Window::m_window = nullptr;
 SDL_GLContext Window::m_context = 0;
-
-void Window::CreateFromFile(const std::string& properties)
-{
-	try {
-		json j = json::parse_file(properties);
-		auto size = j["size"];
-		auto vsync = j["vsync"];
-		auto fullscreen = j["fullscreen"];
-
-		if (size.is_null() || !size.is_array() || size.size() < 2) {
-			if (!fullscreen.is_null() && fullscreen)
-				Window::Create("ENOJ");
-			else
-				throw std::exception("window size wasn't specified");
-		}
-		else {
-			Window::Create(size[0], size[1], "ENOJ", (!fullscreen.is_null() && fullscreen));
-		}
-
-		if (vsync)
-			Window::EnableVSync();
-	}
-	catch (std::exception e) {
-		Log::out << Log::Type::ERROR << e.what() << "\n";
-		Window::Create(800, 600, "ENOJ");
-	}
-}
 
 void Window::Create(const std::string & title)
 {
@@ -60,6 +32,7 @@ void Window::Create(size_t width, size_t height, const std::string & title, bool
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+	m_aspect = static_cast<float>(width) / static_cast<float>(height);
 	m_size = glm::ivec2(width, height);
 
 	if (!fullscreen)
@@ -84,8 +57,6 @@ void Window::Create(size_t width, size_t height, const std::string & title, bool
 
 void Window::Close()
 {
-	assert(m_isOpen);
-
 	SDL_GL_DeleteContext(m_context);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();
@@ -104,18 +75,14 @@ void Window::DisableVSync()
 
 void Window::Clear()
 {
-	assert(m_isOpen);
-
 	glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, 1.0f);
 	glViewport(0, 0, m_size.x, m_size.y);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glCullFace(GL_BACK);
+	glCullFace(GL_FRONT);
 }
 
 void Window::Clear(float r, float g, float b, float a)
 {
-	assert(m_isOpen);
-
 	glClearColor(r, g, b, a);
 	glViewport(0, 0, m_size.x, m_size.y);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -124,21 +91,16 @@ void Window::Clear(float r, float g, float b, float a)
 
 void Window::Update()
 {
-	assert(m_isOpen);
 	SDL_GL_SwapWindow(m_window);
 }
 
 void Window::BindForReading(size_t id)
 {
-	assert(m_isOpen);
-
 	glActiveTexture(GL_TEXTURE0 + id);
 }
 
 void Window::BindForDrawing()
 {
-	assert(m_isOpen);
-
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 

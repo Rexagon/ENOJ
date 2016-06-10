@@ -8,8 +8,6 @@
 class Window
 {
 public:
-	static void CreateFromFile(const std::string& properties);
-
 	static void Create(const std::string& title);
 	static void Create(size_t width, size_t height, const std::string& title, bool fullscreen = false);
 	static void Close();

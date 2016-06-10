@@ -52,6 +52,7 @@ static mesh_ptr ProcessMesh(const aiScene* scene, aiMesh* mesh)
 	std::vector<Vertex> vertices(mesh->mNumVertices);
 	std::vector<size_t> indices;
 
+	bool hasTangents = mesh->HasTangentsAndBitangents();
 	for (size_t i = 0; i < mesh->mNumVertices; ++i) {
 		Vertex vertex;
 
@@ -68,6 +69,12 @@ static mesh_ptr ProcessMesh(const aiScene* scene, aiMesh* mesh)
 			vertex.texCoords.y = mesh->mTextureCoords[0][i].y;
 		}
 
+		if (hasTangents) {
+			vertex.tangent.x = mesh->mTangents[i].x;
+			vertex.tangent.y = mesh->mTangents[i].y;
+			vertex.tangent.z = mesh->mTangents[i].z;
+		}
+
 		vertices[i] = vertex;
 	}
 
@@ -80,51 +87,56 @@ static mesh_ptr ProcessMesh(const aiScene* scene, aiMesh* mesh)
 			indices.push_back(face.mIndices[j]);
 		}
 
-		// Computing tangents
-		size_t i1 = face.mIndices[0];
-		size_t i2 = face.mIndices[1];
-		size_t i3 = face.mIndices[2];
+		if (!hasTangents) {
+			size_t i1 = face.mIndices[0];
+			size_t i2 = face.mIndices[1];
+			size_t i3 = face.mIndices[2];
 
-		const glm::vec3& v1 = vertices[i1].position;
-		const glm::vec3& v2 = vertices[i2].position;
-		const glm::vec3& v3 = vertices[i3].position;
+			const glm::vec3& v1 = vertices[i1].position;
+			const glm::vec3& v2 = vertices[i2].position;
+			const glm::vec3& v3 = vertices[i3].position;
 
-		const glm::vec2& w1 = vertices[i1].texCoords;
-		const glm::vec2& w2 = vertices[i2].texCoords;
-		const glm::vec2& w3 = vertices[i3].texCoords;
+			const glm::vec2& w1 = vertices[i1].texCoords;
+			const glm::vec2& w2 = vertices[i2].texCoords;
+			const glm::vec2& w3 = vertices[i3].texCoords;
 
-		float x1 = v2.x - v1.x;
-		float x2 = v3.x - v1.x;
-		float y1 = v2.y - v1.y;
-		float y2 = v3.y - v1.y;
-		float z1 = v2.z - v1.z;
-		float z2 = v3.z - v1.z;
+			float x1 = v2.x - v1.x;
+			float x2 = v3.x - v1.x;
+			float y1 = v2.y - v1.y;
+			float y2 = v3.y - v1.y;
+			float z1 = v2.z - v1.z;
+			float z2 = v3.z - v1.z;
 
-		float s1 = w2.x - w1.x;
-		float s2 = w3.x - w1.x;
-		float t1 = w2.y - w1.y;
-		float t2 = w3.y - w1.y;
+			float s1 = w2.x - w1.x;
+			float s2 = w3.x - w1.x;
+			float t1 = w2.y - w1.y;
+			float t2 = w3.y - w1.y;
 
-		float r = 1.0F / (s1 * t2 - s2 * t1);
-		glm::vec3 sdir((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
-			(t2 * z1 - t1 * z2) * r);
-		glm::vec3 tdir((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
-			(s1 * z2 - s2 * z1) * r);
+			float r = 1.0F / (s1 * t2 - s2 * t1);
+			glm::vec3 sdir((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+				(t2 * z1 - t1 * z2) * r);
+			glm::vec3 tdir((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+				(s1 * z2 - s2 * z1) * r);
 
-		tan1[i1] += sdir;
-		tan1[i2] += sdir;
-		tan1[i3] += sdir;
+			tan1[i1] += sdir;
+			tan1[i2] += sdir;
+			tan1[i3] += sdir;
 
-		tan2[i1] += tdir;
-		tan2[i2] += tdir;
-		tan2[i3] += tdir;
+			tan2[i1] += tdir;
+			tan2[i2] += tdir;
+			tan2[i3] += tdir;
+		}
 	}
 
-	for (size_t i = 0; i < vertices.size(); ++i) {
-		const glm::vec3& n = vertices[i].normal;
-		const glm::vec3& t = tan1[i];
+	if (!hasTangents) {
+		for (size_t i = 0; i < vertices.size(); ++i)
+		{
+			const glm::vec3& n = vertices[i].normal;
+			const glm::vec3& t = tan1[i];
 
-		vertices[i].tangent = glm::normalize(t - n * glm::dot(n, t));
+			vertices[i].tangent = glm::normalize(t - n * glm::dot(n, t));
+			if (vertices[i].tangent == glm::vec3()) std::cout << "Zero tangent: " << i << "\n";
+		}
 	}
 
 	delete[] tan1;
@@ -188,7 +200,7 @@ Model ModelManager::Load(const std::string& filename)
 	const aiScene* scene = importer.ReadFile(filename, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs);
 
 	if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-		throw std::exception(("unable to load scene \"" + filename + "\": " + importer.GetErrorString()).c_str());
+		throw std::exception(("Unable to load \"" + filename + "\": " + importer.GetErrorString()).c_str());
 	}
 
 	Model res;

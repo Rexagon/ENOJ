@@ -13,29 +13,14 @@
     <ClCompile Include="Log.cpp">
       <Filter>Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="stb_image\stb_image.cpp">
       <Filter>Stuff\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderManager.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>Logic\ECS</Filter>
     </ClCompile>
     <ClCompile Include="ComponentManager.cpp">
       <Filter>Logic\ECS</Filter>
@@ -46,32 +31,56 @@
     <ClCompile Include="main.cpp">
       <Filter>_main</Filter>
     </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Logic\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderingSystem.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderingComponent.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadableScene.cpp">
-      <Filter>Logic</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelBone.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\RenderingSystem</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelBone.cpp">
+      <Filter>Graphics\RenderingSystem</Filter>
     </ClCompile>
     <ClCompile Include="ModelManager.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Graphics\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraSystem.cpp">
+      <Filter>Graphics\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystem.cpp">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingComponent.cpp">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Graphics\ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Graphics\ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Graphics\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Graphics\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaiscriptCreator.cpp">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaiscriptBindings.cpp">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClCompile>
+    <ClCompile Include="СhaiscriptStdlib.cpp">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Graphics\TextureManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,20 +99,8 @@
     <ClInclude Include="Log.h">
       <Filter>Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image\stb_image.h">
       <Filter>Stuff\stb_image</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderManager.h">
-      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>Stuff</Filter>
@@ -132,35 +129,59 @@
     <ClInclude Include="ENOJ.h">
       <Filter>_main</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Logic\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderingComponent.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderingSystem.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadableScene.h">
-      <Filter>Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelBone.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelManager.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Transformable.h">
       <Filter>Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelBone.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Graphics\CameraSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSystem.h">
+      <Filter>Graphics\CameraSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystem.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingComponent.h">
+      <Filter>Graphics\RenderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Graphics\ShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Graphics\ShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Graphics\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Graphics\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Graphics\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaiscriptBindings.h">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaiscriptStdlib.h">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClInclude>
+    <ClInclude Include="СhaiscriptCreator.h">
+      <Filter>Stuff\chaiscript</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +205,21 @@
     </Filter>
     <Filter Include="_main">
       <UniqueIdentifier>{9b5f7107-f331-4c23-8f10-f580bf71defc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\CameraSystem">
+      <UniqueIdentifier>{9692e68a-a44f-47d8-af11-06e5dae0b5f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\RenderingSystem">
+      <UniqueIdentifier>{79df8be8-ca8d-4b57-b2c3-550a494e8c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\ShaderManager">
+      <UniqueIdentifier>{fce432e4-06c0-4ecd-8fff-68a99422c69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\TextureManager">
+      <UniqueIdentifier>{ad96b83c-d866-4eca-8840-259b528cd73b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stuff\chaiscript">
+      <UniqueIdentifier>{2edee890-9883-47b7-a193-6a621eda8a70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

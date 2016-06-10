@@ -1,0 +1,36 @@
+{
+    "name": "start_scene",
+    "scripts": [
+        {
+            "name": "Game logic",
+            "path": "main_menu_script.ch"   
+        }
+    ],
+    "entities": [
+        {
+            "name": "well",
+            "rotation": [0, 0, 0],
+            "rendering_component": {
+                "model": "models/well.fbx"
+            }
+        },
+        {
+            "name": "main_camera",
+            "position": [1, 1, -4],
+            "camera_component": {
+                "projection": "perspective",
+                "fov": 60,
+                "near_plane": 0.3,
+                "far_plane": 1000
+            },
+            "script_component": {
+                "scripts": [
+                    {
+                        "name": "Camera logic",
+                        "path": "camera_logic.ch"   
+                    }
+                ]
+            }
+        }
+    ]
+}

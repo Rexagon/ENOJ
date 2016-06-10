@@ -4,7 +4,6 @@
 #include "TextureManager.h"
 #include "ShaderManager.h"
 #include "ComponentManager.h"
-#include "EntityManager.h"
 #include "Script.h"
 
 #include <ctime>
@@ -13,14 +12,9 @@ Game::Game()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	Log::Create("log.txt");
 	srand(static_cast<size_t>(time(nullptr)));
 
-	Script::Init();
-
-	TextureManager::Create("images/default_diffuse.png");
-	TextureManager::Create("images/default_normal.png");
-	TextureManager::Create("images/default_specular.png");
+	Script::Init(this);
 }
 
 Game::~Game()
@@ -32,10 +26,8 @@ Game::~Game()
 	TextureManager::Clear();
 	ShaderManager::Clear();
 	ecs::ComponentManager::Clear();
-	ecs::EntityManager::Clear();
 
 	Script::Close();
-	Log::Close();
 }
 
 void Game::Loop()

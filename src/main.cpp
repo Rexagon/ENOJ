@@ -1,29 +1,55 @@
 #include "ENOJ.h"
 
-#include <lua.h>
+#include <json.hpp>
 
 class TestGame : public Game
 {
 public:
 	virtual void Init()
 	{
-		Window::CreateFromFile("config.json");
+		try {
+			if (Config::autosize) {
+				if (Config::fullscreen) {
+					Window::Create("ENOJ");
+				}
+				else {
+					throw std::exception("window size wasn't specified");
+				}
+			}
+			else {
+				Window::Create(Config::windowWidth, Config::windowHeight, "ENOJ", Config::fullscreen);
+			}
 
-		auto scene = LoadableScene::Load("Data/main_menu.json");
-		Script::Get("objects").ForAllKeys([&](const std::string& key) {
-			scene->AddEntity(ecs::EntityManager::Create(key));
-		});
-		Push(std::move(scene));
+			if (Config::vsync) {
+				Window::EnableVSync();
+			}
+		}
+		catch (const std::exception& e) {
+			Log::out << Log::Type::ERROR << e.what() << "\n";
+			Window::Create(800, 600, "ENOJ");
+		}
+
+		try {
+			Push(Scene::Load(Config::dataFolder + "start_scene.json"));
+		}
+		catch (const std::exception& e) {
+			Log::out << Log::Type::ERROR << e.what() << "\n";
+		}
 	}
 };
 
 int main(int argc, char** argv)
 {
+	Log::Create("log.txt");
+	Config::Load("config");
+
 	{
 		TestGame game;
 		game.Init();
 		game.Loop();
 	}
+
+	Log::Close();
 
 	return 0;
 }

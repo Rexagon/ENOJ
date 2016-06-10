@@ -111,7 +111,7 @@ shader_ptr ShaderManager::Create(const std::string & shaderName, int type)
 		m_resourceMap.insert(std::make_pair(shaderName, shader));
 	}
 
-	Log::out << "Shader loaded: \"" << shaderName << "\"\n";
+	Log::out << Log::Type::INFO << "Shader loaded: \"" << shaderName << "\"\n";
 
 	return shader;
 }

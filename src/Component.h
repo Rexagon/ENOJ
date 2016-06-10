@@ -10,7 +10,6 @@ namespace ecs
 	{
 	public:
 		Component() {}
-		Component(sel::Selector data) {}
 		virtual ~Component() {}
 
 		Entity* GetOwner() const { return m_owner; }

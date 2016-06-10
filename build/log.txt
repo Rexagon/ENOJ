@@ -1,0 +1,20 @@
+ENOJ version: 1.0.3
+Log file created
+
+[ERROR]: Unable to load "Data/models/well.fbx": Unable to open file "Data/models/well.fbx".
+[INFO]: Component created: RenderingComponent
+[INFO]: Entity created: well
+[INFO]: Component created: CameraComponent
+[INFO]: Entity created: main_camera
+[INFO]: Shader loaded: "Data/shaders/model"
+[INFO]: Component deleted: well.rendering_component
+[INFO]: Component deleted: main_camera.camera_component
+[INFO]: Scene deleted: start_scene
+[INFO]: Entity deleted: well
+[INFO]: Entity deleted: main_camera
+[INFO]: Shader deleted: "Data/shaders/model"
+
+
+[CLOSED]
+0 warnings
+1 errors

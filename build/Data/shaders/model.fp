@@ -29,5 +29,5 @@ void main()
     vec3 normal = get_normal();
     vec3 specular = texture(specular_tex, v_tex_coords).rgb;
     
-    gl_FragColor = vec4(diffuse, 1.0);
+    gl_FragColor = vec4(v_tangent, 1.0);
 }

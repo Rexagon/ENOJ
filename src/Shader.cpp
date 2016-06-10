@@ -32,7 +32,7 @@ Shader::~Shader()
 	}
 	glDeleteProgram(GLid);
 
-	Log::out << Log::Type::INFO << "Shader deleted: " + m_path + "\n";
+	Log::out << Log::Type::INFO << "Shader deleted: \"" + m_path + "\"\n";
 }
 
 void Shader::Bind()

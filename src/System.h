@@ -16,13 +16,13 @@ namespace ecs
 
 		virtual void Update() {}
 
-		static T* Create()
+		T* Create()
 		{
 			T* ptr = ComponentManager::Create<T>();
 			m_components.push_back(ptr);
 			return ptr;
 		}
 	protected:
-		static std::vector<T*> m_components;
+		std::vector<T*> m_components;
 	};
 }

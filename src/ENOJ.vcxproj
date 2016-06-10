@@ -47,16 +47,19 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;opengl32.lib;LuaCppInterface.lib;Lua52.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;opengl32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="CameraSystem.cpp" />
+    <ClCompile Include="ChaiscriptBindings.cpp" />
+    <ClCompile Include="ChaiscriptCreator.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="LoadableScene.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -71,21 +74,24 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
-    <ClCompile Include="System.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="СhaiscriptStdlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="ChaiscriptBindings.h" />
+    <ClInclude Include="ChaiscriptStdlib.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="ENOJ.h" />
-    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="LoadableScene.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Math.h" />
@@ -107,6 +113,7 @@
     <ClInclude Include="Transformable.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="СhaiscriptCreator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

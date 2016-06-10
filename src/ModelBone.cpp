@@ -31,8 +31,8 @@ void ModelBone::Draw(shader_ptr shader, const std::map<std::string, ModelBone*>&
 		if (hasBones) {
 			shader->SetUniformsArray("bone_matrices", &boneMatrices[0], boneMatrices.size());
 		}
-		shader->SetUniform("has_bones", hasBones);
 		shader->SetUniform("model_matrix", m_globalTransformation);
+		m->Draw();
 	}
 
 	for (auto c : m_children) {
